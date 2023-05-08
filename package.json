@@ -1,0 +1,32 @@
+{
+  "name": "3d-virtual-ai-environments",
+  "version": "1.0.0",
+  "description": "3D Virtual AI Environments",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KenoLeon/3D-Virtual-AI-Environments.git"
+  },
+  "keywords": [
+    "3D",
+    "Virtual",
+    "environments",
+    "for",
+    "AI"
+  ],
+  "author": "Keno Leon",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/KenoLeon/3D-Virtual-AI-Environments/issues"
+  },
+  "homepage": "https://github.com/KenoLeon/3D-Virtual-AI-Environments#readme",
+  "dependencies": {
+    "three": "^0.152.2"
+  },
+  "devDependencies": {
+    "parcel-plugin-static-files-copy": "^2.6.0"
+  }
+}
