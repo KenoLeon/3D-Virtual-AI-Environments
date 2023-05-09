@@ -3,6 +3,7 @@ node_modules/
 
 # Compiled output
 dist/
+.cache
 
 # Dependency directories
 /.pnp
