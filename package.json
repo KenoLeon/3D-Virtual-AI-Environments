@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/KenoLeon/3D-Virtual-AI-Environments#readme",
   "dependencies": {
+    "gh-pages": "^5.0.0",
     "three": "^0.152.2"
   },
   "devDependencies": {
