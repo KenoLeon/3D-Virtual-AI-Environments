@@ -2,7 +2,7 @@
 node_modules/
 
 # Compiled output
-dist/
+/dist/
 .cache
 
 # Dependency directories
