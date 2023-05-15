@@ -8,4 +8,4 @@
 
 [ROOM 04 - POSITIVE AND NEGATIVE ELEMENTS ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_04/)
 
-[ROOM 05 - POSITIVE AND NEGATIVE ELEMENTS ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_05/)
+[ROOM 05 - VISUAL PERCEPTION ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_05/)
