@@ -1,6 +1,7 @@
 # 3D-Virtual-AI-Environments
 
  [MEDIUM ARTICLE : 3D Virtual Environments for AIs ](https://k3no.medium.com/3d-virtual-environments-for-ais-e02de5c4ef1d)
+ (right-click to open in new tab/window)
 
 [-------------------- ROOMS PART 01-------------------- ]
 
