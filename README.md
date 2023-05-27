@@ -9,3 +9,5 @@
 [ROOM 04 - POSITIVE AND NEGATIVE ELEMENTS ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_04/) (right-click to open in new tab/window)
 
 [ROOM 05 - VISUAL PERCEPTION ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_05/) (right-click to open in new tab/window)
+
+[ROOM 06 - SEARCH/MAZE SETUP ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_06/) (right-click to open in new tab/window)
