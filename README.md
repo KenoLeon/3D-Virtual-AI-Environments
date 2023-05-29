@@ -19,3 +19,5 @@
 [-------------------- UPCOMING PART 02-------------------- ]
 
 [ROOM 06 - SEARCH/MAZE SETUP ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_06/) (right-click to open in new tab/window)
+
+[ROOM 07 - CUSTOM NUMERICAL MAZES ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_07/) (right-click to open in new tab/window)
