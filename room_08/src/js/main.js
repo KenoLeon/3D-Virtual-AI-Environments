@@ -6,7 +6,7 @@ import {
 let camera, scene, renderer;
 let cube;
 let backWallBottomLeft, backWallBottomRight, backWallTop, frontWallBottomLeft, frontWallBottomRight, frontWallTop;
-let leftWall, rightWall;
+let leftWall, rightWall, entryPlatform, exitPlatform;
 let moveForward = false,
     moveBackward = false,
     moveLeft = false,
@@ -18,36 +18,6 @@ let rotationSpeed = 0.05;
 let previousCubePosition = new THREE.Vector3();
 const mazeWalls = [];
 const tileSize = 1;
-
-// Couple of test mazes :
-
-// const maze = [
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 1, 1, 1, 1, 1, 1, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 1, 1, 1, 1, 1, 1, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-//   ];
-
-// const maze = [
-//     [0, 0, 0, 0, 0, 3, 0, 0, 0, 0],
-//     [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
-//     [1, 1, 1, 0, 1, 0, 1, 1, 1, 1],
-//     [1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
-//     [1, 0, 1, 1, 1, 1, 1, 1, 0, 1],
-//     [1, 0, 0, 0, 0, 0, 1, 1, 0, 1],
-//     [1, 0, 1, 1, 0, 0, 0, 1, 0, 1],
-//     [1, 0, 1, 0, 0, 1, 0, 0, 0, 1],
-//     [1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
-//     [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-//     [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
-//     [0, 0, 0, 0, 0, 2, 0, 0, 0, 0]
-//   ];
 
 const maze = [
     [0, 0, 0, 0, 0, 3, 0, 0, 0, 0],
@@ -63,6 +33,21 @@ const maze = [
     [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
     [0, 0, 0, 0, 0, 2, 0, 0, 0, 0]
   ];
+
+  // const maze = [
+  //   [0, 0, 0, 0, 0, 3, 0, 0, 0, 0],
+  //   [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+  //   [1, 1, 1, 0, 1, 0, 1, 1, 1, 1],
+  //   [1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+  //   [1, 0, 1, 1, 1, 1, 1, 1, 0, 1],
+  //   [1, 0, 0, 0, 0, 0, 1, 1, 0, 1],
+  //   [1, 0, 1, 1, 0, 0, 0, 1, 0, 1],
+  //   [1, 0, 1, 0, 0, 1, 0, 0, 0, 1],
+  //   [1, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+  //   [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+  //   [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+  //   [0, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+  // ];
 
 function init() {
 
@@ -110,18 +95,21 @@ function init() {
     const exitPlatformMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
     const entryPlatformMaterial = new THREE.MeshStandardMaterial({ color: 0xffa500 });
 
-    const exitPlatform = new THREE.Mesh(platformGeometry, exitPlatformMaterial);
+    exitPlatform = new THREE.Mesh(platformGeometry, exitPlatformMaterial);
     exitPlatform.position.set(0.5, -0.5, -5.6); // Adjust position as needed
     scene.add(exitPlatform);
 
-    const entryPlatform = new THREE.Mesh(platformGeometry, entryPlatformMaterial);
+    entryPlatform = new THREE.Mesh(platformGeometry, entryPlatformMaterial);
     entryPlatform.position.set(0.5, -0.5, 5.6); // Adjust position as needed
     scene.add(entryPlatform);
 
     createGrid(10)
+
     buildMaze(scene, maze, tileSize, 0.5, 0.5);
     
-
+    const path = dfsSolver(maze);
+    console.log("Path:", path);
+    indicatePath(scene, path, tileSize);
 
     const cubeTextureFace = new THREE.TextureLoader().load("cubeTextureFace.png");
     var cubeMaterial = new THREE.MeshBasicMaterial({ map: cubeTextureFace });
@@ -243,7 +231,7 @@ function buildMaze(scene, maze, tileSize, xOffset = 0, yOffset = 0) {
     });
   
     const wallGeometry = new THREE.BoxGeometry(tileSize, 2, tileSize);
-  
+    
     // Cycle through maze tiles    
     for (let row = 0; row < maze.length; row++) {
       for (let col = 0; col < maze[row].length; col++) {
@@ -262,6 +250,113 @@ function buildMaze(scene, maze, tileSize, xOffset = 0, yOffset = 0) {
       }
     }
   }
+
+
+  function dfsSolver(maze) {
+    const start = findStart(maze);
+    const goal = findGoal(maze);
+    const visited = new Set();
+  
+    const path = dfs(maze, start, goal, visited);
+  
+    if (path.length === 0) {
+      return null;  // Path not found
+    }
+  
+    return path;
+  }
+  
+
+  function findStart(maze) {
+    for (let i = 0; i < maze.length; i++) {
+      for (let j = 0; j < maze[i].length; j++) {
+        if (maze[i][j] === 2) {
+          console.log("Start:", [i, j]);
+          return [i, j];
+        }
+      }
+    }
+    console.log("Start not found");
+    return null;  // Start not found
+  }
+  
+  function findGoal(maze) {
+    for (let i = 0; i < maze.length; i++) {
+      for (let j = 0; j < maze[i].length; j++) {
+        if (maze[i][j] === 3) {
+          console.log("Goal:", [i, j]);
+          return [i, j];
+        }
+      }
+    }
+    console.log("Goal not found");
+    return null;  // Goal not found
+  }
+
+  function dfs(maze, current, goal, visited) {
+    const [x, y] = current;
+  
+    if (x === goal[0] && y === goal[1]) {
+      // Goal reached
+      return [current];  // Include the current position in the path
+    }
+  
+    visited.add(`${x},${y}`);
+  
+    // Define the possible moves (up, right, down, left)
+    const moves = [
+      [x - 1, y], // Up
+      [x, y + 1], // Right
+      [x + 1, y], // Down
+      [x, y - 1]  // Left
+    ];
+  
+    for (const [nextX, nextY] of moves) {
+      // Check if the move is within the maze boundaries and not a wall
+      if (
+        nextX >= 0 && nextX < maze.length &&
+        nextY >= 0 && nextY < maze[0].length &&
+        maze[nextX][nextY] !== 1 &&
+        !visited.has(`${nextX},${nextY}`)
+      ) {
+        const path = dfs(maze, [nextX, nextY], goal, visited);
+        if (path.length > 0) {
+          return [current, ...path];  // Include the current position in the path
+        }
+      }
+    }
+  
+    return [];  // Path not found
+  }
+ 
+  function indicatePath(scene, path, tileSize) {
+    const pathMaterial = new THREE.MeshBasicMaterial({
+      color: 0xff0000,
+      transparent: true,
+      opacity: 0.9,
+    });
+  
+    const tileSizeX = tileSize-0.4;
+    const tileSizeY = tileSize-0.4;
+  
+    for (let i = 0; i < path.length; i++) {
+      const position = path[i];
+      const x = position[0];
+      const y = position[1];
+      const z = -0.49;
+  
+      const tileGeometry = new THREE.BoxGeometry(tileSizeX, tileSizeY, 0.01);
+      const tileMesh = new THREE.Mesh(tileGeometry, pathMaterial);
+      tileMesh.position.set(
+        y-4.5,
+        z,
+        x-5.5
+      );
+      tileMesh.rotation.x = Math.PI / 2; // Rotate around x-axis          
+      scene.add(tileMesh);
+    }
+  }
+  
 
 
 function checkCollision() {

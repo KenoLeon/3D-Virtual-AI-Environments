@@ -16,8 +16,10 @@
 
 [ROOM 05 - VISUAL PERCEPTION ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_05/) (right-click to open in new tab/window)
 
-[-------------------- UPCOMING PART 02-------------------- ]
+[-------------------- UPCOMING PART 02 3D AI MAZES-------------------- ]
 
 [ROOM 06 - SEARCH/MAZE SETUP ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_06/) (right-click to open in new tab/window)
 
 [ROOM 07 - CUSTOM NUMERICAL MAZES ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_07/) (right-click to open in new tab/window)
+
+[ROOM 08 - MAZE SOLVERS * PATHS ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_08/) (right-click to open in new tab/window)
