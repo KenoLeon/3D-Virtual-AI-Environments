@@ -24,10 +24,13 @@
   },
   "homepage": "https://github.com/KenoLeon/3D-Virtual-AI-Environments#readme",
   "dependencies": {
+    "bootstrap": "^5.3.0",
     "gh-pages": "^5.0.0",
+    "gsap": "^3.11.5",
     "three": "^0.152.2"
   },
   "devDependencies": {
-    "parcel-plugin-static-files-copy": "^2.6.0"
+    "parcel-plugin-static-files-copy": "^2.6.0",
+    "sass": "^1.62.1"
   }
 }
