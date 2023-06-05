@@ -22,7 +22,7 @@
 
 [ROOM 07 - CUSTOM NUMERICAL MAZES ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_07/) (right-click to open in new tab/window)
 
-[ROOM 08 - MAZE SOLVERS * PATHS ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_08/) (right-click to open in new tab/window)
+[ROOM 08 - MAZE SOLVERS & PATHS ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_08/) (right-click to open in new tab/window)
 
 [ROOM 09 - MAZE WALKER  ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_09/) (right-click to open in new tab/window)
 
