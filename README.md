@@ -16,7 +16,12 @@
 
 [ROOM 05 - VISUAL PERCEPTION ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_05/) (right-click to open in new tab/window)
 
-[-------------------- UPCOMING PART 02 3D AI MAZES-------------------- ]
+[-------------------- ROOMS PART 02 3D AI MAZES-------------------- ]
+
+[MEDIUM ARTICLE : Search in AI 3D Environments ](https://k3no.medium.com/search-in-ai-3d-environments-ad2b0b7c4de1)
+ (right-click to open in new tab/window)
+
+
 
 [ROOM 06 - SEARCH/MAZE SETUP ](https://kenoleon.github.io/3D-Virtual-AI-Environments/room_06/) (right-click to open in new tab/window)
 
